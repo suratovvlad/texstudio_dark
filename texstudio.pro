@@ -144,7 +144,11 @@ HEADERS += texstudio.h \
     editors.h \
     libqmarkedscrollbar/src/markedscrollbar.h \
     flowlayout.h \
-    tests/latexstyleparser_t.h
+    tests/latexstyleparser_t.h \
+    minisplitter.h \
+    encoding.h \
+    tests/latexparser_t.h \
+    tests/encoding_t.h
 SOURCES += main.cpp \
     texstudio.cpp \
     buildmanager.cpp \
@@ -240,12 +244,15 @@ SOURCES += main.cpp \
     unixutils.cpp \
     editors.cpp \
     libqmarkedscrollbar/src/markedscrollbar.cpp \
-    flowlayout.cpp
+    flowlayout.cpp \
+    minisplitter.cpp \
+    encoding.cpp \
+    tests/latexparser_t.cpp \
+    tests/encoding_t.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
-    images.qrc \
-    style.qrc
+    images.qrc
 FORMS += filechooser.ui \
     insertgraphics.ui \
     tabbingdialog.ui \
@@ -492,6 +499,8 @@ isEmpty(USE_SYSTEM_HUNSPELL){
 
 include(qcodeedit/qcodeedit.pri)
 
+include(latexparser/latexparser.pri)
+
 isEmpty(USE_SYSTEM_QUAZIP) {
   DEFINES += QUAZIP_STATIC
   include(quazip/quazip/quazip.pri)
@@ -606,7 +615,7 @@ exists(./.hg2) | exists(./.hg) {
 }
 
 #QMAKE_CXXFLAGS_DEBUG += -Werror  -Wall -Wextra  -Winit-self -Wmain -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith -Wtype-limits -Wwrite-strings -Wclobbered  -Wempty-body -Wsign-compare -Waddress -Wlogical-op   -Winline
-QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra  -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith  -Wwrite-strings -Wempty-body -Wsign-compare -Waddress   -Winline
+QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra  -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith  -Wwrite-strings -Wempty-body -Wsign-compare -Waddress   -Winline -Wstrict-aliasing
 
 !win32: QMAKE_LFLAGS += -rdynamic # option not supported by mingw
 else {
