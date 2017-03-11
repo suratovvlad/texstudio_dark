@@ -252,7 +252,8 @@ SOURCES += main.cpp \
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
-    images.qrc
+    images.qrc \
+    style.qrc
 FORMS += filechooser.ui \
     insertgraphics.ui \
     tabbingdialog.ui \

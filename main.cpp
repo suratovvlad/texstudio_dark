@@ -195,6 +195,17 @@ int main(int argc, char **argv)
 	QObject::connect(&a, SIGNAL(messageReceived(const QString &)),
 	                 a.mw, SLOT(onOtherInstanceMessage(const QString &)));
 
+	// Enabling dark theme
+	QFile file(":qdarkstyle/style.qss");
+	if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		a.setStyleSheet(file.readAll());
+		file.close();
+	}
+	QPalette palette = a.palette();
+	palette.setColor(QPalette::Active, QPalette::Base, QColor(100,100,100));
+	palette.setColor(QPalette::Link, QColor("#00bfff"));
+	a.setPalette(palette);
+
 	try {
 		return a.exec();
 	} catch (...) {
