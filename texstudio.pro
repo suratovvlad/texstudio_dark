@@ -252,8 +252,7 @@ SOURCES += main.cpp \
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
-    images.qrc \
-    style.qrc
+    images.qrc
 FORMS += filechooser.ui \
     insertgraphics.ui \
     tabbingdialog.ui \
@@ -623,4 +622,9 @@ else {
   QMAKE_CXXFLAGS += -gstabs -g
   QMAKE_LFLAGS -= -Wl,-s
   QMAKE_LFLAGS_RELEASE -= -Wl,-s
+}
+
+# Dark Theme Plugin
+unix:!macx {
+    LIBS += -L/usr/lib/libqdark -llibqdark
 }
