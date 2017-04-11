@@ -626,5 +626,5 @@ else {
 
 # Dark Theme Plugin
 unix:!macx {
-    LIBS += -L/usr/lib/libqdark -llibqdark
+    LIBS += -llibqdark
 }
