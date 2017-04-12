@@ -627,3 +627,7 @@ else {
   QMAKE_LFLAGS -= -Wl,-s
   QMAKE_LFLAGS_RELEASE -= -Wl,-s
 }
+
+unix:!macx {
+    LIBS += -llibqdark
+}
