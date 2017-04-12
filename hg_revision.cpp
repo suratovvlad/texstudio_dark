@@ -1,1 +1,1 @@
-const char * TEXSTUDIO_HG_REVISION = "6379:5d519eaca3d9";
+const char * TEXSTUDIO_HG_REVISION = "6475:fe21cf14c0b4";

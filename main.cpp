@@ -25,8 +25,6 @@
 #include <qtsingleapplication.h>
 #include <QSplashScreen>
 
-#include <libqdark/QDarkThemePlugin.h>
-
 #ifdef Q_OS_WIN32
 #include "windows.h"
 typedef BOOL (WINAPI *AllowSetForegroundWindowFunc)(DWORD);
@@ -73,7 +71,6 @@ void TexstudioApp::init(QStringList &cmdLine)
 	processEvents();
 
 	mw = new Texstudio(0, 0, splash);
-	mw->setObjectName("MainWindow"); // For dark theme plugin
 	connect(this, SIGNAL(lastWindowClosed()), this, SLOT(quit()));
 	splash->finish(mw);
 	delete splash;
@@ -157,7 +154,8 @@ bool handleCommandLineOnly(const QStringList &cmdLine) {
 							<< "  --start-always          start a new instance, even if TXS is already running\n"
 							<< "  --pdf-viewer-only       run as a standalone pdf viewer without an editor\n"
 							<< "  --page PAGENUM          display a certain page in the pdf viewer\n"
-							<< "  --no-session            do not load/save the session at startup/close\n";
+                            << "  --no-session            do not load/save the session at startup/close\n"
+                            << "  --version               show version number\n";
 		return true;
 	}
 
@@ -199,10 +197,6 @@ int main(int argc, char **argv)
 	                 a.mw, SLOT(onOtherInstanceMessage(const QString &)));
 
 	try {
-		// Enabling dark theme
-		QDarkThemePlugin darkThemePlugin;
-		darkThemePlugin.initialize();
-
 		return a.exec();
 	} catch (...) {
 #ifndef NO_CRASH_HANDLER
