@@ -175,6 +175,12 @@ int main(int argc, char **argv)
 	QString appId = generateAppId();
 	// This is a dummy constructor so that the programs loads fast.
 	TexstudioApp a(appId, argc, argv);
+
+	// Enable Dark Theme
+	QDarkThemePlugin darkThemePlugin;
+	// Change links color
+	darkThemePlugin.changeLinksColor();
+
 	bool startAlways = false;
 	QStringList cmdLine = parseArguments(QCoreApplication::arguments(), startAlways);
 
@@ -200,8 +206,7 @@ int main(int argc, char **argv)
 	                 a.mw, SLOT(onOtherInstanceMessage(const QString &)));
 
 	try {
-		// Enable Dark Theme
-		QDarkThemePlugin darkThemePlugin;
+		// Initialize dark theme plugin
 		darkThemePlugin.initialize();
 		return a.exec();
 	} catch (...) {
